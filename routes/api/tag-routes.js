@@ -9,12 +9,12 @@ router.get("/", (req, res) => {
   Tag.findAll({
       include: [{ model: Product, attributes: ['id', 'product_name'], through: ProductTag, as: "products" }],
     })
-    .then (dbTagData => {
-      if(!dbTagData) {
+    .then (tagData => {
+      if(!tagData) {
         res.status(404).json({ message: 'No tag data'});
         return;
       }
-      res.status(200).json( { message: 'Tag retrieval successful', dbTagData });
+      res.status(200).json( { message: 'Tag retrieval successful', tagData });
     })
 });
 
