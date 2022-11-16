@@ -26,7 +26,11 @@ router.get("/:id", (req, res) => {
       { model: Category, as: "category" },
       { model: Tag, through: ProductTag, as: "tags" },
     ],
+  })
+  .then((productData) => {
+    res.status(200).json({message: 'product found', productData})
   });
+
 });
 
 // create new product

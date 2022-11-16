@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
   .then(catData => {
     if(!catData){
       res.status(404).json({message: "No category with this id found!"})
-    } res.status(200).json({message: 'Category found!'})
+    } res.status(200).json({message: 'Category found!', catData} )
   })
 });
 
@@ -39,7 +39,8 @@ router.post('/', (req, res) => {
 
 router.put('/:id', (req, res) => {
   // update a category by its `id` value
-  Category.update(req.body);
+  Category.update(req.body, {where:{id: req.params.id}
+  });
   res.status(200).json(req.body);
 });
 
